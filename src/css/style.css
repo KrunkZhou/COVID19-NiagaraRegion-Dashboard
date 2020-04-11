@@ -1,0 +1,212 @@
+/**
+ * 尼亚加拉地区疫情监控 - style.css
+ * Author: Krunk Zhou (https://krunk.cn/kblog1558.htm)
+ * Licence: MIT Licences
+ */
+
+ body {
+	background-color: rgb(250,250,250);
+	width: 100%;
+	height: 100%;
+    margin: 0px;
+ 	padding-left: 0px;
+ 	border: 0px;
+}
+
+h2 {
+	text-align: center;
+}
+h3 {
+	text-align: center;
+}
+a:link, a:visited {
+ 	color: #fff;
+	text-decoration: underline;
+	cursor: auto;
+}
+
+a:link:active, a:visited:active {
+  color: #fff;
+}
+
+#krunkChart {
+	background-color: #fff;
+	border-radius: 12px;
+}
+.KhistoryT,.KhistoryT th,.KhistoryT td {
+	border: 1px solid rgba(0, 0, 0, 0.2);
+	padding: 5px 15px;
+	border-collapse: collapse;
+}
+.KhistoryT {
+	width: 80%;
+	margin-left: 10%;
+	margin-right: 10%;
+}
+
+.button {
+	background-color: #cc0000 ;
+	border: none;
+	color: white;
+	padding: 10px 25px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+}
+
+.like {
+	background-color: #cc0000 ;
+	border: none;
+	color: white;
+	padding: 10px 20px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	vertical-align: middle;
+}
+
+.tooltip {
+	position: relative;
+	display: inline-block;
+	border-bottom: 1px dotted black;
+}
+.tooltip .tooltiptext {
+	visibility: hidden;
+	width: 150px;
+	background-color: black;
+	color: #fff;
+	text-align: center;
+	padding: 5px 0;
+	border-radius: 6px;
+	font-size: 5px;
+	position: absolute;
+	z-index: 1;
+}
+.tooltip:hover .tooltiptext {
+	visibility: visible;
+}
+
+.alert {
+ 	padding: 10px 20px;
+ 	background-color: #2196F3; 
+ 	color: white;
+ 	margin-bottom: 15px;
+}
+.closebtn {
+ 	margin-left: 15px;
+ 	color: white;
+ 	font-weight: bold;
+ 	float: right;
+ 	font-size: 22px;
+ 	line-height: 20px;
+ 	cursor: pointer;
+  	transition: 0.3s;
+}
+.closebtn:hover {
+  	color: black;
+}
+
+.chart-container{
+	position: relative;
+	width: 60vw;
+}
+
+.header {
+ 	height: 10%;
+    min-height: 150px;
+    max-height: 300px;
+ 	color: #ffffff !important;
+ 	font-size: 100%;
+ 	text-align: right;
+    padding-right: 5%;
+    padding-left: 50px;
+    background-image: url('../img/header.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: right top;
+    background-color: #cc0000;
+ }
+ .headerbottom {
+    background-color: #262626;
+    min-height: 3px;
+    width: 100%;
+    margin-bottom: 25px;
+    z-index: 100;
+    margin-bottom: 20px;
+    display: block;
+}
+.headercontainer {
+    text-align: left;
+    padding-left: 40px;
+    padding-top: 25px;
+    font-size: 14px;
+}
+.footer {
+    height: 75px;
+    background-color: #262626;
+    position: relative;
+    bottom: 0px;
+    padding-left: 25px;
+    padding-bottom: 25px;
+}
+.footercontainer {
+	color: #fff;
+    text-align: left;
+    padding-left: 40px;
+    padding-top: 25px;
+    font-size: 14px;
+}
+
+.mdc-fab {
+ 	position: fixed;
+ 	bottom: 1rem;
+	right: 1rem;
+}
+
+@media(min-width: 1024px) {
+   	.mdc-fab {
+    	bottom: 1.5rem;
+    	right: 1.5rem;
+  	}
+}
+
+
+@media only screen and (max-width: 748px) {
+	.KhistoryT {
+		width: 90%;
+		margin-left: 5%;
+		margin-right: 5%;
+	}
+	.chart-container{
+		width: 90vw;
+	}
+	.header {
+	 	height: 10%;
+	    min-height: 150px;
+	    max-height: 200px;
+	    background-image: url('../img/headermobile.jpg');
+    	padding-left: 20px;
+	 }
+	.headercontainer {
+	    text-align: left;
+	    padding-left: 20px;
+	    padding-top: 20px;
+	    font-size: 14px;
+	}
+	.footercontainer {
+	    padding-left: 10px;
+	    padding-top: 25px;
+	    font-size: 14px;
+	}
+}
+
+@media only screen and (min-width: 1000px) {
+	.KhistoryT {
+		width: 60%;
+		margin-left: 20%;
+		margin-right: 20%;
+	}
+}
+

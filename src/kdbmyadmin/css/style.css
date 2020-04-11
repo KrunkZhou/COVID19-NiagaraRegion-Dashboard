@@ -1,0 +1,240 @@
+/**
+ * KRUNK.CN KDB My Admin
+ * @ Website: https://api.krunk.cn/kdb
+ * @ Dev Website: http://kblog.krunk.cn/view.php?post=kdb
+ */
+
+ *{
+	box-sizing: border-box;
+}
+body{
+	background-color: #eee;
+	margin: 0;
+  word-wrap: break-word;
+}
+
+form input[type=text]{
+  padding: 5px 8px;
+  margin-bottom: 3px;
+  border-radius: 5px;
+  border: 1px solid rgb(200,200,200);
+}
+
+.kdbmyadmin_login_form{
+	ext-align: center;
+    max-width: 500px;
+    padding: 10px;
+    background-color: rgba(230,230,230,.5);
+    border-radius: 7px;
+    color: #000;
+    border: 1px #b4b4b4;
+    border-style: solid;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    -webkit-animation-name: overlayFadein;
+    -webkit-animation-duration: 1s;
+}
+
+.kdbmyadmin_login_form input[type=text] {
+    width: 90%;
+    padding: 15px;
+    margin: 5px 5% 20px 5%;
+    border: none;
+    background: #fff;
+    border-radius: 20px;
+    -webkit-animation-name: btufadeIn;
+    -webkit-animation-duration: .6s;
+    animation-name: btufadeIn;
+    animation-duration: .6s;
+    opacity: .8;
+    transition: .3s;
+}
+
+.kdbmyadmin_login_form input[type=password] {
+    width: 90%;
+    padding: 15px;
+    margin: 5px 5% 20px 5%;
+    border: none;
+    background: #fff;
+    border-radius: 20px;
+    -webkit-animation-name: btufadeIn;
+    -webkit-animation-duration: .6s;
+    animation-name: btufadeIn;
+    animation-duration: .6s;
+    opacity: .8;
+    transition: .3s;
+}
+
+.kdbmyadmin_login_form input[type=text]:focus{
+	width:94%;
+	margin:5px 3% 20px 3%
+}
+
+.kdbmyadmin_login_form input[type=password]:focus{
+  width:94%;
+  margin:5px 3% 20px 3%
+}
+
+form input[type=submit]{
+	background-color: #00b807;
+  color: white;
+  padding: 4px 8px;
+  border: none;
+  cursor: pointer;
+  margin-bottom:10px;
+  opacity: 0.8;
+  border-radius: 20px;
+  /*margin-left: 5%;*/
+  background-color: rgb(76, 175, 80);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  -webkit-animation-name: btufadeIn;
+  -webkit-animation-duration: 0.6s;
+  animation-name: btufadeIn;
+  animation-duration: 0.6s;
+  transition: 0.3s;
+}
+
+.kdbmyadmin_login_form .btn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  width: 90%;
+  margin-bottom:10px;
+  opacity: 0.8;
+  border-radius: 20px;
+  /*margin-left: 5%;*/
+  background-color: rgb(76, 175, 80);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  -webkit-animation-name: btufadeIn;
+  -webkit-animation-duration: 0.6s;
+  animation-name: btufadeIn;
+  animation-duration: 0.6s;
+  transition: 0.3s;
+}
+
+.header{
+	width:100%;
+	text-align: center;
+  background: #1abc9c;
+  color: white;
+  font-size: 15px;
+  padding: 1px 5px 5px 5px;
+}
+
+.main-container{
+	margin: 0 5% 0 5%;
+}
+
+.table-name-container{
+	padding: 5px;
+}
+
+.table-action-container{
+	padding: 5px 5px 5px 5px;
+  	background-color: #f7f7f7;
+  	border-radius: 10px;
+}
+
+.main-container:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+button {
+  background-color: #4CAF50; 
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 13px;
+  margin: 2px 5px 2px 5px;
+  padding: 4px 8px 4px 8px;
+  border-radius: 10px;
+}
+
+.footer{
+	text-align: center;
+	margin: 20px;
+}
+
+.table-content{
+	padding: 0 10px 0 10px;
+}
+
+.table-name-button{
+  min-width: 100px;
+  max-width: 150px;
+  word-wrap: break-word;
+}
+
+.delete-button{
+  background-color: #c00;
+}
+
+.table-content-table{
+  border: 1px solid rgb(200,200,200);
+  border-collapse: collapse;
+  margin: 10px;
+  padding: 2px 5px;
+}
+
+th, td {
+  text-align: left;
+}
+
+.collapsible-content{
+  display: none;
+  overflow: hidden;
+}
+
+pre{
+  width:auto;
+  max-width: 100%;
+  overflow: auto;
+}
+
+.notice{
+  background-color: #009de0;
+  color: #ffffff;
+  border-radius: 5px;
+  padding: 10px 20px;
+  margin: 10px 5% 0 5%;
+  text-align: center;
+}
+
+.login-notice{
+  max-width: 500px;
+}
+
+.nerror{
+  background-color: #c00;
+}
+
+a:link, a:visited {
+  color: #000;
+}
+
+a:hover, a:active {
+  text-decoration: none;
+}
+
+@media only screen and (min-width:1000px) {
+	.table-name-container{
+		float: left;
+		padding: 5px;
+	  	width: 20%;
+	}
+	.table-action-container{
+		float: left;
+		padding: 5px 5px 5px 5px;
+	  	width: 80%;
+	  	background-color: #f7f7f7;
+	  	border-radius: 10px;
+	}
+}
