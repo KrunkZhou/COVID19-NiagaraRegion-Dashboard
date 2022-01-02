@@ -1,6 +1,6 @@
 <?php
 /**
- * 尼亚加拉地区疫情监控 - API
+ * 尼亚加拉地区疫情监控 - 主页
  * Author: Krunk Zhou (https://krunk.cn)
  * Licence: MIT Licences
  */

@@ -5,9 +5,27 @@
  * Licence: MIT Licences
  */
 
+header("Access-Control-Allow-Origin: *");
+
+include('kdb.class.php');
+$db = new kdb();
+
 if (isset($_GET['api'])){
 	if ($_GET['api']=="t"){
 		$response=true;
+	}
+}
+
+$admin = $db->find_one('covid-19-admin',array('name' => 'admin'));
+if ($admin){
+	if ($admin[key($admin)]['stop']=="true"){
+		if ($response){
+			echo "3";
+			exit();
+		}else{
+			header("Location: index.php?s=error");
+			exit();
+		}
 	}
 }
 
@@ -43,11 +61,19 @@ if ($html&$html2){
 	//var_dump($spnUpdateTime);
 
 	// Death
-	$dNum=trim($xpath2->query('//table/tbody/tr[6]/td[2]')->item(0)->nodeValue);
+	$dNum= str_replace("&nbsp;", "", trim($xpath2->query('//table/tbody/tr[6]/td[2]')->item(0)->nodeValue));
+	$d_j=str_replace("\u00a0", "",json_encode(array('d'=>$dNum)));
+	$dNum=json_decode($d_j,true)['d'];
 	//var_dump($dNum);
 
-	include('kdb.class.php');
-	$db = new kdb();
+	
+
+	$cases = $db->find_one('covid-19-dNum',array('name' => 'death_new'));
+	if ($cases){
+		if ($cases[key($cases)]['death_new']>$dNum){
+			$dNum=$cases[key($cases)]['death_new'];
+		}
+	}
 
 	$data = array(
 		'date' => date("Y/m/d"),

@@ -2,7 +2,7 @@
 /**
  * 尼亚加拉地区疫情监控 - 主页
  * Author: Krunk Zhou (https://krunk.cn/kblog1558.htm)
- * Version: 1.0
+ * Version: 3.0 (Updated on 20/12/29)
  * Web: https://niagara.krunk.cn/
  * GitHub: https://github.com/KrunkZhou/COVID19-NiagaraRegion-Dashboard
  * Licence: MIT Licences
@@ -41,9 +41,20 @@ $new_cases=array_reverse($new_cases); //新增确诊
 <html>
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>尼亚加拉地区疫情实时数据</title>
+	<title>尼亚加拉地区疫情实时数据 2020 - 2021</title>
 	<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
-	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link rel="stylesheet" type="text/css" href="css/style-new.css">
+	<script>
+		// 更新提示
+		// var level=3;
+		// if(localStorage.getItem('notice')<level){
+		// 	localStorage.setItem('notice', level);
+		// 	location.href="?s=notice";
+		// }else{
+		// 	localStorage.setItem('notice', level);
+		// }
+	</script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <div class='header'><div class="headercontainer">
 <h1>尼亚加拉地区</h1><h6>Niagara Region COVID-19 统计</h6>
@@ -51,19 +62,21 @@ $new_cases=array_reverse($new_cases); //新增确诊
 <?php
 
 // 提示条
-if (isset($_GET['s'])){
-	echo '<div class="alert"><span class="closebtn" onclick="location.href=\'index.php\';">&times;</span>';
-	if ($_GET['s']=='new'){
-		echo "已创建";
-	}else if ($_GET['s']=='update'){
-		echo "已更新";
-	}else if ($_GET['s']=='error'){
-		echo "更新失败";
-	}else if ($_GET['s']=='nothing'){
-		echo "已是最新";
-	}
-	echo "</div>";
-}
+// if (isset($_GET['s'])){
+// 	echo '<div class="alert"><span class="closebtn" onclick="location.href=\'index.php\';">&times;</span>';
+// 	if ($_GET['s']=='new'){
+// 		echo "已创建";
+// 	}else if ($_GET['s']=='update'){
+// 		echo "已更新";
+// 	}else if ($_GET['s']=='error'){
+// 		echo "更新失败";
+// 	}else if ($_GET['s']=='nothing'){
+// 		echo "已是最新";
+// 	}else if ($_GET['s']=="notice"){
+// 		echo "感谢催更的小伙伴们, 网站现在已经更新<br><br>11/16 至 12/28 有部分数据未能记录<br>导致图表可能有所偏差, 敬请谅解<br>PS: 终于考完啦!";
+// 	}
+// 	echo "</div>";
+// }
 
 //今日统计
 echo "<table class='KhistoryT'>
@@ -91,11 +104,11 @@ echo "</table><center><small>更新时间 ".$update_time_latest."<small></center
 <div class="chart-container" >
 	<canvas id="krunkChart"></canvas><br>
 </div>
-</center>
+</center><br>
 <?php
 
 //历史统计
-echo "<h3>Niagara Region 疫情历史</h3><table class='KhistoryT'>
+echo "<h3>Niagara Region 疫情历史</h3><div id='container'><div id='wrap'><table class='KhistoryT'>
 <tr><th>历史</th><th style=\"color: rgb(174, 33, 44);\">确诊</th><th style=\"color: rgb(40, 183, 163);\">痊愈</th><th style=\"color: rgb(93, 112, 146);\">死亡</th><th style=\"color: rgb(247, 130, 7);\">新增</th></tr>";
 $counter=0;
 if ($cases_r){
@@ -110,15 +123,46 @@ if ($cases_r){
 		echo '</tr>';
 	}
 }
-echo "</table>";
+echo "</table><div id='gradient'></div></div><div id='read-more'></div>
+ </div>";
 
 ?>
-<br>
-<center><a href="update.php"><button class="button">刷新</button></a></center>
+<br><br><br><br><br><br><br><br><br><br>
+<center><a href="more-data.php"><button class="button">查看完整数据</button></a></center>
+<br><br><hr><br>
+
+
 <!--<center><a href="api.php"><button>了解如何调用我们的数据库</button></a></center>-->
-<br><br><p style="text-align: center;">数据来源：Niagara Region，Niagara Health</p><br><br>
+
+
+<b><p style="text-align: center;margin: 10px;">注意:</p></b>
+<p style="text-align: center;margin: 10px;">20/11/16 至 20/12/28 的部分数据未能记录, 未记录的值将显示为 0</p>
+<p style="text-align: center;margin: 10px;">20/06/22 以及之前的 Death 数据来自于 Niagara Health 官网</p>
+<p style="text-align: center;margin: 10px;">20/03/13 至 20/04/08  的确诊与恢复数据来自于 The Standard 新闻</p>
+<p style="text-align: center;margin: 10px;">数据大约在每日中午 (多伦多时间) 更新</p>
+<p style="text-align: center;margin: 10px;">建议在电脑端查看图表信息以获得更好的体验</p>
+
+<br>
+
+<center><a href="feedback.php"><button class="button">反馈</button></a></center>
+<br><br>
+
+<hr>
+
+<br><p style="text-align: center;margin: 10px;">数据提供：Niagara Region，Niagara Health</p>
+<p style="text-align: center;margin: 10px;">数据来源：Integrated Public Health Information System</p>
+
+<br>
+
+<p style="text-align: center;margin: 10px;">数据定义:</p>
+<p style="text-align: left;margin: 20px;">Confirmed cases are laboratory-confirmed positive cases of COVID-19. This number does not include probable cases.</p>
+<p style="text-align: left;margin: 20px;">Resolved cases are individuals who are no longer isolating or hospitalized due to COVID-19.</p>
+<p style="text-align: left;margin: 20px;">Deceased cases are individuals who died while infected with COVID-19. This does not mean that COVID-19 was the cause of death. Death data is updated Monday, Wednesday and Friday.</p>
+<p style="text-align: left;margin: 20px;">Active cases are individuals who are currently isolating or hospitalized due to COVID-19.</p>
+
+<br><br>
 <div class="footer"><div class="footercontainer">
-	Stay Home and Be Safe. <br><a href="https://krunk.cn/kblog1558.html">KRUNK DESIGN</a><!--<div class="tooltip">数据来源(?)<span class="tooltiptext">Niagara Region<br>Niagara Health</span></div>-->
+	Stay Home and Be Safe. 2020 - 2021<br><a href="https://krunk.cn/kblog1558.html">KRUNK DESIGN</a><!--<div class="tooltip">数据来源(?)<span class="tooltiptext">Niagara Region<br>Niagara Health</span></div>-->
 </div></div>
 
 <script>
@@ -189,46 +233,58 @@ var krunkChart = new Chart(document.getElementById('krunkChart').getContext('2d'
     }
 });
 </script>
+
+<button class="mdc-fab like" id="like" >加油 +1</button>
+
+<?php
+$date = new DateTime();
+$timestamp = $date->getTimestamp();
+?>
+
 <script>
-	req=new XMLHttpRequest();
-	req.onreadystatechange=function(){
-		if (this.readyState==4 & this.status==200) {
-			$data=this.response.split("\n");
-			console.log("Update Request Complete: "+$data[1]);
-			if ($data[1]==1){
-				location.reload();
-			}
-		}
-	};
-	//console.log(localWishlist);
-	req.open("GET","update.php?api=t");
-	req.send();
+	// 实时更新已禁用
+	// req=new XMLHttpRequest();
+	// req.onreadystatechange=function(){
+	// 	if (this.readyState==4 & this.status==200) {
+	// 		$data=this.response.split("\n");
+	// 		console.log("Update Request Complete: "+$data[1]);
+	// 		if ($data[1]==1){
+	// 			location.reload();
+	// 		}
+	// 	}
+	// };
+	// req.open("GET","update.php?api=t");
+	// req.send();
 
 	req=new XMLHttpRequest();
 	req.onreadystatechange=function(){
 		if (this.readyState==4 & this.status==200) {
 			$data=this.response.split("\n");
 			console.log("Like: "+$data[1]);
-			document.getElementById("like").innerHTML = "加油 +1 | "+$data[1]+"次";
+			document.getElementById("like").innerHTML = decodeURI("%E5%8A%A0%E6%B2%B9%20")+"+1 | "+$data[1]+decodeURI("%E6%AC%A1");
 		}
 	};
-	//console.log(localWishlist);
-	req.open("GET","like.php?add=0");
-	req.send();
-
-	function like(){
-		req=new XMLHttpRequest();
-		req.onreadystatechange=function(){
-			if (this.readyState==4 & this.status==200) {
-				$data=this.response.split("\n");
+	reqLike=new XMLHttpRequest();
+	reqLike.onreadystatechange=function(){
+		if (this.readyState==4 & this.status==200) {
+			$data=this.response.split("\n");
+			if($data[1]==-1){
+				location.reload();
+			}else{
 				console.log("Like: "+$data[1]);
-				document.getElementById("like").innerHTML = "感谢您的加油 | "+$data[1]+"次";
+			document.getElementById("like").innerHTML = decodeURI("%E6%84%9F%E8%B0%A2%E6%82%A8%E7%9A%84%E5%8A%A0%E6%B2%B9%20%7C%20")+$data[1]+decodeURI("%E6%AC%A1");
 			}
-		};
-		//console.log(localWishlist);
-		req.open("GET","like.php?add=1");
-		req.send();
-	}
+		}
+	};
+	req.open("POST","like.php");
+	req.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+	req.send("add=0");
+
+	document.getElementById("like").addEventListener("click", function(){
+		reqLike.open("POST","like.php");
+		reqLike.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+		reqLike.send("add=<?php echo $timestamp*14/3*15 ?>");
+	});
 </script>
 
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-156200375-2"></script>
@@ -239,5 +295,33 @@ var krunkChart = new Chart(document.getElementById('krunkChart').getContext('2d'
   gtag('config', 'UA-156200375-2');
 </script>
 
-<button class="mdc-fab like" id="like" onclick="like();">加油 +1</button>
+<script type="text/javascript">
+//折叠
+$(function(){
+ 	var slideHeight = 515; // px
+	var defHeight = $('#wrap').height();
+ 	if(defHeight >= slideHeight){
+  		$('#wrap').css('height' , slideHeight + 'px');
+  		$('#read-more').append('<center><a class="button" href="#">点击展开</a></center>');
+  		$('#read-more a').click(function(){
+	   		var curHeight = $('#wrap').height();
+	   		if(curHeight == slideHeight){
+	    		$('#wrap').animate({
+	     			height: defHeight
+	    		}, "normal");
+	    		$('#read-more a').html('点击隐藏');
+	    		$('#gradient').fadeOut();
+	   		}else{
+	    		$('#wrap').animate({
+	    			 height: slideHeight
+	    		}, "normal");
+	    		$('#read-more a').html('点击展开');
+	    		$('#gradient').fadeIn();
+	   		}
+	   		return false;
+  		});  
+ 	}
+});
+</script>
+
 </html>

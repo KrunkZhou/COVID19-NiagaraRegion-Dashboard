@@ -1,0 +1,68 @@
+/**
+ * 尼亚加拉地区疫情监控 FeedBack - fbstyle.css
+ * Author: Krunk Zhou (https://krunk.cn/kblog1558.htm)
+ * Licence: MIT Licences
+ */
+
+body{
+	background-color: rgb(40,40,40);
+	color: #fff;
+}
+input[type=text],textarea {
+  width: 90%;
+  padding: 15px;
+  margin: 5px 5% 20px 5%;
+  border: none;
+  background: #f1f1f1;
+  border-radius: 20px;
+  -webkit-animation-name: btufadeIn;
+  -webkit-animation-duration: 0.6s;
+  animation-name: btufadeIn;
+  animation-duration: 0.6s;
+  opacity: 0.8;
+  transition: 0.3s;
+}
+form{
+	width: 70%;
+	text-align: center;
+	display: inline-block;
+	margin-left: auto;
+    margin-right: auto;
+}
+/*input[type=button], input[type=submit], input[type=reset] {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-decoration: none;
+  margin: 4px 2px;
+  cursor: pointer;
+}*/
+
+.btu{
+	color: #FFFFFF;
+    background-color: #4CAF50;
+	border: none;
+    display: inline-block;
+    padding: 8px 16px;
+    vertical-align: middle;
+    overflow: hidden;
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
+    white-space: nowrap;
+	width: 180px;
+	border-radius: 15px;
+	transition: 0.3s;
+}
+
+.btu:hover{
+    background-color: #6fb071;
+    width: 200;
+}
+
+@media only screen and (max-width: 748px) {
+	form{
+		width: 95%;
+	}
+}
